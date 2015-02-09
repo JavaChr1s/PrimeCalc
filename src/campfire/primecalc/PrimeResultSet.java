@@ -14,7 +14,7 @@ public class PrimeResultSet {
 	private final int numberOfFactors;
 	private final int groupSize;
 
-	PrimeResultSet(final int numberOfFactors, final int groupSize) {
+	public PrimeResultSet(final int numberOfFactors, final int groupSize) {
 
 		this.numberOfFactors = numberOfFactors;
 		this.groupSize = groupSize;
@@ -33,7 +33,7 @@ public class PrimeResultSet {
 
 	private void fillPrimeTable() {
 
-		int[] primes = calcFirstNPrimes(numberOfFactors * groupSize);
+		final int[] primes = calcFirstNPrimes(numberOfFactors * groupSize);
 
 		for (int i = 0; i < numberOfFactors; i++) {
 			for (int j = 0; j < groupSize; j++) {
@@ -58,13 +58,13 @@ public class PrimeResultSet {
 	@Override
 	public String toString() {
 
-		StringBuilder ret = new StringBuilder();
+		final StringBuilder ret = new StringBuilder();
 		ret.append("Ergebnis: ");
 		ret.append(this.result);
 		ret.append("\t\t");
 		ret.append("(0x");
 		ret.append(this.result.toString(16).toUpperCase());
-		ret.append(")");
+		ret.append(')');
 		ret.append("\n");
 
 		ret.append("Max:      ");
@@ -72,19 +72,19 @@ public class PrimeResultSet {
 		ret.append("\t\t");
 		ret.append("(0x");
 		ret.append(this.maxPrime.toString(16).toUpperCase());
-		ret.append(")");
+		ret.append(')');
 		ret.append("\n");
 
 		for (int i = 0; i < numberOfFactors; i++) {
 			for (int j = 0; j < groupSize; j++) {
 				if (primeTable[i][j] == resultPrimes[i]) {
-					ret.append("(");
+					ret.append('(');
 				}
 				ret.append(primeTable[i][j]);
 				if (primeTable[i][j] == resultPrimes[i]) {
-					ret.append(")");
+					ret.append(')');
 				}
-				ret.append(" ");
+				ret.append(' ');
 			}
 			ret.append("| ");
 		}
@@ -94,10 +94,10 @@ public class PrimeResultSet {
 
 	private void calcRandomPrimeProduct() {
 
-		Random rollFor = new Random();
+		final Random rollFor = new Random();
 
 		for (int i = 0; i < numberOfFactors; i++) {
-			int factor = this.primeTable[i][rollFor.nextInt(groupSize)];
+			final int factor = this.primeTable[i][rollFor.nextInt(groupSize)];
 			result = result.multiply(BigInteger.valueOf(factor));
 			resultPrimes[i] = factor;
 		}
@@ -127,13 +127,17 @@ public class PrimeResultSet {
 	}
 
 	private boolean isPrime(final int num) {
-		if (num == 2)
+		if (num == 2) {
 			return true;
-		if (num % 2 == 0)
+		}
+		if (num % 2 == 0) {
 			return false;
-		for (int i = 3; i * i <= num; i += 2)
-			if (num % i == 0)
+		}
+		for (int i = 3; i * i <= num; i += 2) {
+			if (num % i == 0) {
 				return false;
+			}
+		}
 		return true;
 	}
 }

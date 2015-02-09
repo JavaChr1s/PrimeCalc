@@ -8,8 +8,8 @@ public class Main {
 
 	public static void main(final String[] args) {
 
-		Scanner in = new Scanner(System.in);
-		Main main = new Main();
+		final Scanner in = new Scanner(System.in);
+		final Main main = new Main();
 
 		// enter number (of questions)
 		int numberOfQ = main.fetchNumber(in);
@@ -18,27 +18,20 @@ public class Main {
 		in.close();
 
 		for (int i = 0; i < numberOfTurns; i++) {
-			PrimeResultSet foo = new PrimeResultSet(numberOfQ, DEFAULT_SIZE);
+			final PrimeResultSet foo = new PrimeResultSet(numberOfQ, DEFAULT_SIZE);
 			System.out.println(foo.toString());
 			System.out.println("-------------------");
 		}
 	}
 
 	private int fetchNumber(final Scanner in) {
-
 		System.out.print("Please enter number of questions: ");
-		int number = Integer.valueOf(in.nextLine());
-
-		return number;
+		return Integer.valueOf(in.nextLine());
 	}
 
 	private int fetchTurns(final Scanner in) {
-
-		int number = 1;
 		System.out.print("Please enter number of turns: ");
-		number = Integer.valueOf(in.nextLine());
-
-		return number;
+		return Integer.valueOf(in.nextLine());
 	}
 
 }
